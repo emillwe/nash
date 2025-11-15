@@ -125,14 +125,20 @@ class Chord:
         return result
 
 def main():
+    """
+    examples
+    """
+
+    # chord from arguments
     chord = Chord(7, "flat", quality=QUALITIES.DIMINISHED)
     print(chord)
 
+    # chords from strings
     chord_str = "b3maj7"
     chord = Chord.from_string(chord_str)
     print(chord)
 
-    chord_str = "##2aug9"
+    chord_str = "##2aug911b13"
     print(Chord.from_string(chord_str))
 
 if __name__ == "__main__":
