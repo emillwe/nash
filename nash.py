@@ -1,4 +1,5 @@
 import pylatex
+from pylatex.base_classes import CommandBase
 
 # TODO: Read pylatex doc on leadsheets pkg; integrate w/ pylatex
 # https://ctan.math.washington.edu/tex-archive/macros/latex/contrib/leadsheets/leadsheets_en.pdf
@@ -45,13 +46,31 @@ SHORTCUTS = {
     "aug" : QUALITIES.AUGMENTED
 }
 
+class WriteChord(CommandBase):
+    """
+    A class representing a custom LaTeX command.
+
+    This class represents a custom LaTeX command named
+    ``exampleCommand``.
+    """
+
+    _latex_name = "writeChord"
+    packages = [Package("leadsheets")]
+
+# TODO: flesh out
+class Note:
+    def __init__(self, note, accidental=""):
+        self.note = note
+        self.accidental =
+
 class Chord:
     def __init__(
             self,
-            root: int=1,
-            accidental: str = ACCIDENTALS.NATURAL,
+            # TODO: all roots, bass, should be Note objects
+            root: Note = Note(1, ""),
+            accidental: str = ACCIDENTALS.NATURAL, #
             quality: str = QUALITIES.MAJOR,
-            bass: int=0,
+            bass: Note = Note(),
             extensions: str=None
      ):
         self.root = root
@@ -128,6 +147,8 @@ def main():
     """
     examples
     """
+    \usepackage[full]
+    {leadsheets}
 
     # chord from arguments
     chord = Chord(7, "flat", quality=QUALITIES.DIMINISHED)
